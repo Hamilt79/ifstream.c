@@ -47,6 +47,21 @@ size_t ifs_read(ifstream *s, void *dst, size_t n)
     return got;
 }
 
+long ifs_getline(ifstream *s, char *dst, size_t cap)
+{
+    size_t n = 0;
+    int c = -1;
+
+    if (cap == 0)
+        return -1;
+    while (n + 1 < cap && (c = ifs_getc(s)) != -1 && c != '\n')
+        dst[n++] = (char)c;
+    dst[n] = '\0';
+    if (n == 0 && c == -1)
+        return -1;
+    return (long)n;
+}
+
 int ifs_eof(const ifstream *s)
 {
     return s->eof && s->pos >= s->len;
