@@ -17,6 +17,7 @@ typedef struct {
 
 int ifs_open(ifstream *s, const char *path);
 int ifs_getc(ifstream *s);
+size_t ifs_read(ifstream *s, void *dst, size_t n);
 int ifs_eof(const ifstream *s);
 int ifs_error(const ifstream *s);
 void ifs_close(ifstream *s);
