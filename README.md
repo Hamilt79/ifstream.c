@@ -1,5 +1,7 @@
 # ifstream.c
 
-buffered file reader for c
+header only buffered file reader for c
+
+    #include "ifstream.h"
 
     make test
