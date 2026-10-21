@@ -8,8 +8,12 @@ static size_t ifs_fill(ifstream *s)
         return 0;
     s->pos = 0;
     s->len = fread(s->buf, 1, IFS_BUFSZ, s->fp);
-    if (s->len == 0)
-        s->eof = 1;
+    if (s->len == 0) {
+        if (ferror(s->fp))
+            s->err = 1;
+        else
+            s->eof = 1;
+    }
     return s->len;
 }
 
